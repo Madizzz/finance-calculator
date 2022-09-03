@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap');
+
+*{
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    
+}
+
+header{
+    padding: 16px;
+    height: 100px;
+}
+
+legend{
+    margin-bottom: 8px;
+}
+
+.content{
+    height: calc(100vh - 200px);
+}
+
+.calculator{
+    background: #E7F2F8;
+}
+
+.sum-input{
+    width: 375px;
+}
+.years-input{
+    width: 450px;
+}
+
+.white-button{
+    background: #fff;
+}
+
+.main-button{
+    background-color: #74BDCB;
+}
+
+.input-group-bg{
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #bce5ed;
+    margin-bottom: 16px;
+}
+
+.content-block{
+    padding: 16px;
+}
+
+.result-block{
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 24px;
+    padding-top: 12px;
+    border-top: 1px solid #bce5ed; 
+}
+
+footer{
+    height: 100px;
+    border-top: 1px solid #ccc;    
+}
+
+footer nav{
+    padding: 16px;
+}
+
