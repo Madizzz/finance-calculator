@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles/style.css">    
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/css/uikit.min.css" />   
+</head>
+</head>
+<body>
+
+    <form class="uk-form-stacked">
+        <legend class="uk-legend">Шаг 1</legend>
+        <div>
+            <label class="uk-form-label">Первоначальная сумма</label>
+            <div class="uk-form-controls">
+                <div class="uk-margin">
+                    <input class="uk-input uk-form-width-large" type="number" placeholder="">
+                </div>
+            </div>
+        </div>
+
+        <legend class="uk-legend">Шаг 2 - Пополнения</legend>
+        <div>
+            <div class="uk-form-label">Сумма</div>
+            <div class="uk-form-controls">
+                <div class="uk-margin">
+                    <input class="uk-input uk-form-width-medium" type="number" placeholder="">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="uk-form-label">Периодичность</div>
+            <div class="uk-form-controls">
+                <div class="uk-margin">
+                    <select class="uk-select">
+                        <option>каждый год</option>
+                        <option>каждое полугодие</option>
+                        <option>каждый квартал</option>
+                        <option>каждый месяц</option>
+                    </select>
+                </div> 
+            </div>
+        </div>
+
+        <legend class="uk-legend">Шаг 3 - Начисления процентов</legend>
+
+        <div>
+            <div class="uk-form-label">Процент</div>
+            <div class="uk-form-controls">
+                <div class="uk-margin">
+                    <input class="uk-input uk-form-width-medium" type="number" placeholder="">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="uk-form-label">Периодичность</div>
+            <div class="uk-form-controls">
+                <div class="uk-margin">
+                    <select class="uk-select">
+                        <option>каждый год</option>
+                        <option>каждое полугодие</option>
+                        <option>каждый квартал</option>
+                        <option>каждый месяц</option>
+                    </select>
+                </div> 
+            </div>
+        </div>
+
+        <legend class="uk-legend">Шаг 4 - Количество лет</legend>
+
+        <div>            
+            <div class="uk-form-controls">
+                <div class="uk-margin">
+                    <input class="uk-input uk-form-width-medium" type="number" placeholder="">
+                </div>
+            </div>
+        </div>
+
+        <button class="uk-button uk-button-primary">Считать</button>
+
+        <button class="uk-button uk-button-danger">Сбросить</button>
+
+    </form>
+
+    
+      
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/js/uikit-icons.min.js"></script>
+    <script src="scripts/jquery-3.6.1.min.js"></script>       
+    <script src="scripts/app.js"></script>
+</body>
+</html>
