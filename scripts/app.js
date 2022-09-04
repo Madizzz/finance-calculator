@@ -1,19 +1,37 @@
-function calcInterest(sum, r, n, t, yearPeriod, sumNew) {
-    let results = []
-    let replenishment = 0
-    let percent
-    let percenthistory = 0
-    let prevResult = sum
-    for (let i = 0; i < n; i++) {
-        for (let i = 0; i < t; i++) {
-            replenishment += Math.round(sumNew * yearPeriod)
-            percent = Math.round(((sumNew * yearPeriod) + prevResult) * r)
-            percenthistory += percent
-            prevResult = Math.round(prevResult + (sumNew * yearPeriod) + percent)
-            results.push({totalsum: prevResult, replenishment: replenishment, percent: percenthistory})
-        }
-    }
-    return results
+// function calcInterest(sum, r, n, t, yearPeriod, sumNew) {
+//     let results = []
+//     let replenishment = 0
+//     let percent
+//     let percenthistory = 0
+//     let prevResult = sum
+//     for (let i = 0; i < n; i++) {
+//         for (let i = 0; i < t; i++) {
+//             replenishment += Math.round(sumNew * yearPeriod)
+//             percent = Math.round(((sumNew * yearPeriod) + prevResult) * r)
+//             percenthistory += percent
+//             prevResult = Math.round(prevResult + (sumNew * yearPeriod) + percent)
+//             results.push({totalsum: prevResult, replenishment: replenishment, percent: percenthistory})
+//         }
+//     }
+//     return results
+// }
+function calcInterest(sum, percent, percent_ticks, years, replen_ticks, replen) {  
+    years *= 12 
+    output = [] 
+    let percentH = 0, 
+    replenH = 0 
+    for (let i = 1; i <= years; i++) { 
+      if (i % replen_ticks == 0) { 
+        replenH += replen 
+        sum += replen 
+      } 
+      if (i % percent_ticks == 0) { 
+        percentH += (sum * percent) 
+        sum += (sum * percent) 
+      } 
+      output.push({totalsum: Math.round(sum), replenishment: replenH, percent: Math.round(percentH)}) 
+    } 
+    return output 
 }
 
     //GET ELEMENTS
@@ -129,3 +147,6 @@ setInterval(() => {
         data.remove()
     }
 }, 50)
+
+
+
