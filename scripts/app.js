@@ -153,9 +153,9 @@ setInterval(() => {
 $("#resetButton").on("click", e => {
     $("#sumCalc").val("0")
     $("#sumAdd").val("0")
-    $("#selectPeriod").val("0")
+    $("#selectPeriod").val("1")
     $("#procent").val("0")
-    $("#selectPeriod1").val("0")
+    $("#selectPeriod1").val("1")
     $("#colvoYear").val("0")
 
 
