@@ -7,10 +7,6 @@
     box-sizing: border-box;
 }
 
-body{
-    
-}
-
 header{
     padding: 16px;
     height: 100px;
@@ -71,3 +67,6 @@ footer nav{
     padding: 16px;
 }
 
+.graph {
+    width: 900px;
+}
