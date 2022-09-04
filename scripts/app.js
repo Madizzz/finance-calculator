@@ -15,26 +15,26 @@
 //     }
 //     return results
 // }
-function calcInterest(sum, percent, percent_ticks, years, replen_ticks, replen) {  
-    years *= 12 
-    output = [] 
-    let percentH = 0, 
-    replenH = 0 
-    for (let i = 1; i <= years; i++) { 
-      if (i % replen_ticks == 0) { 
-        replenH += replen 
-        sum += replen 
-      } 
-      if (i % percent_ticks == 0) { 
-        percentH += (sum * percent) 
-        sum += (sum * percent) 
-      } 
-      output.push({totalsum: Math.round(sum), replenishment: replenH, percent: Math.round(percentH)}) 
-    } 
-    return output 
+function calcInterest(sum, percent, percent_ticks, years, replen_ticks, replen) {
+    years *= 12
+    output = []
+    let percentH = 0,
+        replenH = 0
+    for (let i = 1; i <= years; i++) {
+        if (i % replen_ticks == 0) {
+            replenH += replen
+            sum += replen
+        }
+        if (i % percent_ticks == 0) {
+            percentH += (sum * percent)
+            sum += (sum * percent)
+        }
+        output.push({ totalsum: Math.round(sum), replenishment: replenH, percent: Math.round(percentH) })
+    }
+    return output
 }
 
-    //GET ELEMENTS
+//GET ELEMENTS
 
 
 $("#buttonCalc").on("click", e => {
@@ -56,10 +56,10 @@ $("#buttonCalc").on("click", e => {
             selectPeriod,
             colvoYear,
             selectPeriodVal,
-            sumAddVal, 
+            sumAddVal,
             result)
         createChart(data, ['#4f4f4f', '#743ee2', '#743122'])
-        $("#result").text(result[result.length-1].totalsum)
+        $("#result").text(result[result.length - 1].totalsum)
     } else {
         $("#result").text(0)
     }
@@ -83,8 +83,8 @@ function createData(sumCalcVal,
         i2 = (result.length / colvoYear) * i
         labels.push(`${i} год`)
         values1.push(sumCalcVal)
-        values2.push(result[i2-1].replenishment)
-        values3.push(result[i2-1].percent)
+        values2.push(result[i2 - 1].replenishment)
+        values3.push(result[i2 - 1].percent)
     }
     return {
         labels: labels,
@@ -135,7 +135,7 @@ const chart = createChart(createData(10000,
         10,
         1,
         1000
-        )), ['#4f4f4f', '#743ee2', '#743122'])
+    )), ['#4f4f4f', '#743ee2', '#743122'])
 
 setInterval(() => {
     let data1 = document.querySelector(".dataset-units.dataset-bars.dataset-0").querySelectorAll(".data-point-value")
@@ -150,3 +150,14 @@ setInterval(() => {
 
 
 
+$("#resetButton").on("click", e => {
+    $("#sumCalc").val("0")
+    $("#sumAdd").val("0")
+    $("#selectPeriod").val("0")
+    $("#procent").val("0")
+    $("#selectPeriod1").val("0")
+    $("#colvoYear").val("0")
+
+
+
+})

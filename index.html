@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    
+
     <!-- UIkit CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/css/uikit.min.css" />
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" /> -->
@@ -21,12 +21,14 @@
 
     <div class="content uk-flex">
         <div class="calculator content-block">
-            <legend class="uk-legend">Шаг 1 - Первоначальная сумма <span uk-icon="question" uk-tooltip="Сумма денег, которую вы хотели бы инвестировать"></span></legend>
+            <legend class="uk-legend">Шаг 1 - Первоначальная сумма <span uk-icon="question"
+                    uk-tooltip="Сумма денег, которую вы хотели бы инвестировать"></span></legend>
             <div>
                 <label class="uk-form-label"></label>
                 <div class="uk-form-controls uk-flex">
                     <div class="uk-margin">
-                        <input id="sumCalc" class="uk-input uk-form-width-large sum-input" type="number" placeholder="">
+                        <input id="sumCalc" value="1000" class="uk-input uk-form-width-large sum-input" type="number"
+                            placeholder="">
                     </div>
                     <select class="uk-select uk-form-width-xsmall">
                         <option value="">$</option>
@@ -45,18 +47,21 @@
                 </div>
             </div>
 
-            <legend class="uk-legend">Шаг 2 - Пополнения <span uk-icon="question" uk-tooltip="Сумма, которую вы планируете добавлять к основной сумме, или отрицательное число, если вы планируете снимать деньги."></span></legend>
+            <legend class="uk-legend">Шаг 2 - Пополнения <span uk-icon="question"
+                    uk-tooltip="Сумма, которую вы планируете добавлять к основной сумме, или отрицательное число, если вы планируете снимать деньги."></span>
+            </legend>
 
             <div class="uk-flex input-group-bg">
                 <div>
                     <div class="uk-form-label">Сумма</div>
                     <div class="uk-form-controls">
                         <div class="uk-margin">
-                            <input id="sumAdd" class="uk-input uk-form-width-medium" type="number" placeholder="">
+                            <input id="sumAdd" value="100" class="uk-input uk-form-width-medium" type="number"
+                                placeholder="">
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="uk-margin-left">
                     <div class="uk-form-label">Периодичность</div>
                     <div class="uk-form-controls uk-form-width-medium">
@@ -72,20 +77,22 @@
                 </div>
             </div>
 
-            
 
-            <legend class="uk-legend">Шаг 3 - Начисления процентов <span uk-icon="question" uk-tooltip="Ваша предполагаемая процентная ставка и период её начисления"></span></legend>
+
+            <legend class="uk-legend">Шаг 3 - Начисления процентов <span uk-icon="question"
+                    uk-tooltip="Ваша предполагаемая процентная ставка и период её начисления"></span></legend>
 
             <div class="uk-flex input-group-bg">
                 <div>
                     <div class="uk-form-label">Процент</div>
                     <div class="uk-form-controls">
                         <div class="uk-margin">
-                            <input id="procent" class="uk-input uk-form-width-medum" type="number" placeholder="">
+                            <input id="procent" value="5" class="uk-input uk-form-width-medum" type="number"
+                                placeholder="">
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="uk-margin-left">
                     <div class="uk-form-label">Периодичность</div>
                     <div class="uk-form-controls uk-form-width-medium">
@@ -101,29 +108,30 @@
                 </div>
             </div>
 
-            
 
-            <legend class="uk-legend">Шаг 4 - Количество лет <span uk-icon="question" uk-tooltip="Время в годах, в течение которого вы хотели бы откладывать средства"></span></legend>
+
+            <legend class="uk-legend">Шаг 4 - Количество лет <span uk-icon="question"
+                    uk-tooltip="Время в годах, в течение которого вы хотели бы откладывать средства"></span></legend>
 
             <div>
                 <div class="uk-form-controls">
                     <div class="uk-margin">
-                        <input class="uk-input years-input" id="colvoYear" type="number" placeholder="">
+                        <input value="10" class="uk-input years-input" id="colvoYear" type="number" placeholder="">
                     </div>
                 </div>
             </div>
             <div class="uk-flex uk-flex-between">
-                <button class="uk-button uk-button-default white-button">Сбросить</button>
+                <button class="uk-button uk-button-default white-button" id="resetButton">Сбросить</button>
                 <button class="uk-button uk-button-primary main-button" id="buttonCalc">Считать</button>
             </div>
-            
 
-            
+
+
 
             <div class="result-block">
                 <span id="result"></span>
             </div>
-            
+
 
 
         </div>
@@ -133,10 +141,10 @@
 
             </div>
         </div>
-        
-        
+
+
     </div>
-    
+
     <footer>
         <h2>Footer info</h2>
     </footer>
