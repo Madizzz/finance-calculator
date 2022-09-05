@@ -58,7 +58,7 @@ $("#buttonCalc").on("click", e => {
             selectPeriodVal,
             sumAddVal,
             result)
-        createChart(data, ['#4f4f4f', '#743ee2', '#743122'])
+        createChart(data, ['#84a3a6', '#bdc7ed', '#bcedc1'])
         $("#result").text(result[result.length - 1].totalsum)
     } else {
         $("#result").text(0)
@@ -125,17 +125,17 @@ function createChart(data, colors) {
 
 const chart = createChart(createData(10000,
     0.1,
-    1,
+    10,
     10,
     1,
     1000,
     calcInterest(10000,
         0.1,
-        1,
+        10,
         10,
         1,
         1000
-    )), ['#4f4f4f', '#743ee2', '#743122'])
+    )), ['#8a88a6', '#c4c2ed', '#edd1bc'])
 
 setInterval(() => {
     let data1 = document.querySelector(".dataset-units.dataset-bars.dataset-0").querySelectorAll(".data-point-value")
@@ -158,6 +158,6 @@ $("#resetButton").on("click", e => {
     $("#selectPeriod1").val("1")
     $("#colvoYear").val("0")
 
-
+    location.reload(true);
 
 })

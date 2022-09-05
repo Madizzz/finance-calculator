@@ -7,6 +7,14 @@
     box-sizing: border-box;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
 header{
     padding: 16px;
     height: 100px;
@@ -17,7 +25,7 @@ legend{
 }
 
 .content{
-    height: calc(100vh - 200px);
+    
 }
 
 .calculator{
@@ -60,13 +68,12 @@ legend{
 
 footer{
     height: 100px;
+    width: 100%;
+    text-align: center;
     border-top: 1px solid #ccc;    
 }
 
-footer nav{
-    padding: 16px;
-}
-
+/* стили для графика - не трогать */
 .graph {
     width: 900px;
 }
