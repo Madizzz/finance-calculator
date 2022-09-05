@@ -139,20 +139,22 @@
         </div>
 
         <div class="graph content-block">
-            <div class="text-center">
-                <p class="fin-sav-bal font-normal">Итоговый баланс</p>
-                <span id="result1"></span>
-                <div class="row">
-                    <div class="hpanel">
-                        <p class="text-big-32 font-bold"><span id="sumCalc1"></p>
-                        <span>Всего пополнений</span>
-                    </div>
-
-                    <div class="hpanel">
-                        <p class="text-big-24-xs font-bold" ><span id="procent1"></span></p>
-                        <span>Всего процентов</span>
-                    </div>
+            <div class="text-center uk-flex uk-flex-between uk-margin-medium-bottom">
+                <div class="graph-summary">
+                    <p class="fin-sav-bal font-normal">Итоговый баланс</p>
+                    <span id="result1"></span>
+                </div>                
+                
+                <div class="hpanel graph-summary">
+                    <span class="text-big-32 font-bold" id="sumCalc1"></span>
+                    <span>Всего пополнений</span>
                 </div>
+
+                <div class="hpanel graph-summary">
+                    <span class="text-big-24-xs font-bold" id="procent1"></span>
+                    <span>Всего процентов</span>
+                </div>
+                
             </div>
             <div id="graph">
 
