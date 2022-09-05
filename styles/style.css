@@ -127,6 +127,15 @@ footer{
     .graph {
         width: 600px;
     }
+
+}
+.graph-summary{
+    background: #bce5ed;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 16px;
+    font-weight: 700;    
 }
 
 .y.axis > g > text {
