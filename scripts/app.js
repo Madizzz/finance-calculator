@@ -53,10 +53,10 @@ $("#buttonCalc").on("click", e => {
         $("#percent").text(result[result.length - 1].percent + ` ${valetSelectVal}`)
 
     } else {
-        $("#result").text("")
-        $("#result1").text("")
-        $("#replenishment").text("")
-        $("#percent").text("")
+        $("#result").text(0)
+        $("#result1").text(0)
+        $("#replenishment").text(0)
+        $("#percent").text(0)
     }
 })
 
