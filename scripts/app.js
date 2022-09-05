@@ -67,6 +67,45 @@ $("#buttonCalc").on("click", e => {
     }
 })
 
+$("#buttonCalc").on("click", e => {
+    const sumCalcVal = parseInt($("#sumCalc").val() || 0),
+        sumAddVal = parseInt($("#sumAdd").val() || 0),
+        selectPeriodVal = parseInt($("#selectPeriod").val() || 0),
+        procent = parseInt($("#procent").val() || 0),
+        selectPeriod = parseInt($("#selectPeriod1").val() || 0),
+        colvoYear = parseInt($("#colvoYear").val() || 0),
+        replenishment = parseInt($("#replenishment").val() || 0),
+        percent = parseInt($("#percent").val() || 0)
+    let result = calcInterest(sumCalcVal,
+        procent / 100,
+        selectPeriod,
+        colvoYear,
+        selectPeriodVal,
+        sumAddVal,
+        percent,
+        replenishment)
+    if (result.length != 0) {
+        const data = createData(sumCalcVal,
+            procent / 100,
+            selectPeriod,
+            colvoYear,
+            selectPeriodVal,
+            sumAddVal,
+            result,
+            percent,
+            replenishment)
+        createChart(data, ['#84a3a6', '#bdc7ed', '#bcedc1'])
+        const valetSelectVal = $("#valetSelect").val()
+        $("#result1").text(result[result.length - 1].totalsum.toLocaleString() + " " + valetSelectVal)
+        $("#replenishment").text(result[result.length - 1].replenishment.toLocaleString() + " " + valetSelectVal)
+        $("#percent").text(result[result.length - 1].percent.toLocaleString() + " " + valetSelectVal)
+
+    } else {
+        $("#result1").text(0)
+        $("#replenishment").text(0)
+        $("#percent").text(0)
+    }
+})
 
 function createData(sumCalcVal,
     procent,
