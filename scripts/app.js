@@ -15,6 +15,68 @@
 //     }
 //     return results
 // }
+
+class GenerateTable {
+    constructor(containerElem, data) {
+        this.containerElem = containerElem
+        this.data = data
+        this.generaTable()
+        this.isTable = false
+    }
+
+    generaTable() {
+        this.removeTable()
+        this.isTable = true
+        const tbl = document.createElement("table");
+        const tblBody = document.createElement("tbody");
+        const tblHead = document.createElement("thead");
+        const row = document.createElement("tr");
+        for (let i = 0; i < this.data.rows.length; i++) {
+
+            const cell = document.createElement("td");
+            const cellText = document.createTextNode(this.data.rows[i]);
+            cell.appendChild(cellText);
+            row.appendChild(cell);
+
+            // add the row to the end of the table body
+
+        }
+        tblHead.appendChild(row);
+        // creating all cells
+
+        for (let i = 0; i < this.data.column.length; i++) {
+            const row = document.createElement("tr");
+
+            for (let j = 0; j < this.data.column[i].length; j++) {
+                const cell = document.createElement("td");
+                const cellText = document.createTextNode(this.data.column[i][j]);
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }
+
+            // add the row to the end of the table body
+            tblBody.appendChild(row);
+        }
+
+        tbl.appendChild(tblHead)
+        // put the <tbody> in the <table>
+        tbl.appendChild(tblBody);
+        // appends <table> into <body>
+        this.containerElem.appendChild(tbl);
+
+    }
+    removeTable() {
+        if (this.isTable) {
+            console.log(this.containerElem.childNodes)
+            this.containerElem.childNodes = [];
+        }
+
+
+    }
+
+}
+
+
 function calcInterest(sum, percent, percent_ticks, years, replen_ticks, replen) {
     years *= 12
     output = []
@@ -29,7 +91,7 @@ function calcInterest(sum, percent, percent_ticks, years, replen_ticks, replen) 
             percentH += (sum * percent)
             sum += (sum * percent)
         }
-        output.push({ totalsum: Math.round(sum), replenishment: replenH, percent: Math.round(percentH) })
+        output.push({ totalsum: Math.round(sum), replenishment: replenH, percent: Math.round(percentH), percentOld: Math.round(sum * percent) })
     }
     return output
 }
@@ -58,6 +120,7 @@ $("#buttonCalc").on("click", e => {
             selectPeriodVal,
             sumAddVal,
             result)
+
         createChart(data, ['#84a3a6', '#bdc7ed', '#bcedc1'])
         const valetSelectVal = $("#valetSelect").val()
         $("#result").text(result[result.length - 1].totalsum.toLocaleString() + " " + valetSelectVal)
@@ -85,7 +148,7 @@ $("#buttonCalc").on("click", e => {
         percent,
         replenishment)
     let resultTable = []
-    console.log(result)
+
     let sumAdd = sumCalcVal, sumProcent = result[12].percent
     for (let i = 1; i <= colvoYear; i++) {
 
@@ -98,19 +161,19 @@ $("#buttonCalc").on("click", e => {
 
         sumAdd = sumAdd + sumCalcVal
         newArray.push(sumAdd)
+        newArray.push(result[i2 - 1].percentOld)
         newArray.push(result[i2 - 1].percent)
-        sumProcent = sumProcent + result[i2 - 1].percent
-        newArray.push(sumProcent)
 
         newArray.push(result[i2 - 1].totalsum)
 
         resultTable.push(newArray)
     }
-    new GenerateTable(document.querySelector("#table"), {
+    let tableGenerate = new GenerateTable(document.querySelector("#table"), {
         column: resultTable,
         rows: ["Год", "Начальный баланс", "Пополнено за год", "Суммарные пополнения", "Начисленные проценты", "Суммарный процент", "Итоговый баланс"]
 
     })
+
     if (result.length != 0) {
         const data = createData(sumCalcVal,
             procent / 100,
@@ -229,52 +292,3 @@ $("#resetButton").on("click", e => {
     location.reload(true);
 
 })
-class GenerateTable {
-    constructor(containerElem, data) {
-        this.containerElem = containerElem
-        this.data = data
-        this.generaTable()
-    }
-
-    generaTable() {
-
-        const tbl = document.createElement("table");
-        const tblBody = document.createElement("tbody");
-        const tblHead = document.createElement("thead");
-        const row = document.createElement("tr");
-        for (let i = 0; i < this.data.rows.length; i++) {
-
-            const cell = document.createElement("td");
-            const cellText = document.createTextNode(this.data.rows[i]);
-            cell.appendChild(cellText);
-            row.appendChild(cell);
-
-            // add the row to the end of the table body
-
-        }
-        tblHead.appendChild(row);
-        // creating all cells
-
-        for (let i = 0; i < this.data.column.length; i++) {
-            const row = document.createElement("tr");
-
-            for (let j = 0; j < this.data.column[i].length; j++) {
-                const cell = document.createElement("td");
-                const cellText = document.createTextNode(this.data.column[i][j]);
-                cell.appendChild(cellText);
-                row.appendChild(cell);
-            }
-
-            // add the row to the end of the table body
-            tblBody.appendChild(row);
-        }
-
-        tbl.appendChild(tblHead)
-        // put the <tbody> in the <table>
-        tbl.appendChild(tblBody);
-        // appends <table> into <body>
-        this.containerElem.appendChild(tbl);
-
-    }
-
-}
