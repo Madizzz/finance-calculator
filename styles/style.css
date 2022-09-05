@@ -12,7 +12,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 100vh;
+    height: 200vh;
 }
 
 header{
@@ -130,4 +130,20 @@ footer{
 
 .y.axis > g > text {
     font-size: 8px;
+}
+
+/* #special-above, #special-below {
+    filter: brightness(70%)
+} */
+
+#special-above {
+    color: #bce5ed;
+}
+
+#special-below {
+    color: #bce5ed;
+}
+
+.total-cell{
+    color: #bce5ed;
 }

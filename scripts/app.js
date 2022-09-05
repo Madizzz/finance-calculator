@@ -1,26 +1,11 @@
-// function calcInterest(sum, r, n, t, yearPeriod, sumNew) {
-//     let results = []
-//     let replenishment = 0
-//     let percent
-//     let percenthistory = 0
-//     let prevResult = sum
-//     for (let i = 0; i < n; i++) {
-//         for (let i = 0; i < t; i++) {
-//             replenishment += Math.round(sumNew * yearPeriod)
-//             percent = Math.round(((sumNew * yearPeriod) + prevResult) * r)
-//             percenthistory += percent
-//             prevResult = Math.round(prevResult + (sumNew * yearPeriod) + percent)
-//             results.push({totalsum: prevResult, replenishment: replenishment, percent: percenthistory})
-//         }
-//     }
-//     return results
-// }
 function calcInterest(sum, percent, percent_ticks, years, replen_ticks, replen) {
     years *= 12
     output = []
     let percentH = 0,
         replenH = 0
     for (let i = 1; i <= years; i++) {
+        let prevReplenH = (output[i-13] || {replenishment: 0}).replenishment,
+            prevPercenH = (output[i-13] || {percent: 0}).percent
         if (i % replen_ticks == 0) {
             replenH += replen
             sum += replen
@@ -29,7 +14,7 @@ function calcInterest(sum, percent, percent_ticks, years, replen_ticks, replen) 
             percentH += (sum * percent)
             sum += (sum * percent)
         }
-        output.push({ totalsum: Math.round(sum), replenishment: replenH, percent: Math.round(percentH) })
+        output.push({ totalsum: Math.round((sum + Number.EPSILON) * 100) / 100, replenishment: replenH, percent: Math.round((percentH + Number.EPSILON) * 100) / 100, replDif: replenH - prevReplenH, percDif: Math.round(((percentH - prevPercenH) + Number.EPSILON) * 100) / 100 })
     }
     return output
 }
@@ -59,78 +44,19 @@ $("#buttonCalc").on("click", e => {
             sumAddVal,
             result)
         createChart(data, ['#84a3a6', '#bdc7ed', '#bcedc1'])
+        console.log(result)
         const valetSelectVal = $("#valetSelect").val()
-        $("#result").text(result[result.length - 1].totalsum.toLocaleString() + " " + valetSelectVal)
+        createTable(createDataTable(result, colvoYear), sumCalcVal, valetSelectVal)
+        $("#result").text(result[result.length - 1].totalsum + ` ${valetSelectVal}`)
+        $("#result1").text(result[result.length - 1].totalsum + ` ${valetSelectVal}`)
+        $("#replenishment").text(result[result.length - 1].replenishment + ` ${valetSelectVal}`)
+        $("#percent").text(result[result.length - 1].percent + ` ${valetSelectVal}`)
 
     } else {
-        $("#result").text(0)
-    }
-})
-
-$("#buttonCalc").on("click", e => {
-    const sumCalcVal = parseInt($("#sumCalc").val() || 0),
-        sumAddVal = parseInt($("#sumAdd").val() || 0),
-        selectPeriodVal = parseInt($("#selectPeriod").val() || 0),
-        procent = parseInt($("#procent").val() || 0),
-        selectPeriod = parseInt($("#selectPeriod1").val() || 0),
-        colvoYear = parseInt($("#colvoYear").val() || 0),
-        replenishment = parseInt($("#replenishment").val() || 0),
-        percent = parseInt($("#percent").val() || 0)
-    let result = calcInterest(sumCalcVal,
-        procent / 100,
-        selectPeriod,
-        colvoYear,
-        selectPeriodVal,
-        sumAddVal,
-        percent,
-        replenishment)
-    let resultTable = []
-    console.log(result)
-    let sumAdd = sumCalcVal, sumProcent = result[12].percent
-    for (let i = 1; i <= colvoYear; i++) {
-
-        i2 = (result.length / colvoYear) * i
-        let newArray = []
-
-        newArray.push(`${i} год`)
-        newArray.push(result[i2 - 2].totalsum)
-        newArray.push(sumCalcVal)
-
-        sumAdd = sumAdd + sumCalcVal
-        newArray.push(sumAdd)
-        newArray.push(result[i2 - 1].percent)
-        sumProcent = sumProcent + result[i2 - 1].percent
-        newArray.push(sumProcent)
-
-        newArray.push(result[i2 - 1].totalsum)
-
-        resultTable.push(newArray)
-    }
-    new GenerateTable(document.querySelector("#table"), {
-        column: resultTable,
-        rows: ["Год", "Начальный баланс", "Пополнено за год", "Суммарные пополнения", "Начисленные проценты", "Суммарный процент", "Итоговый баланс"]
-
-    })
-    if (result.length != 0) {
-        const data = createData(sumCalcVal,
-            procent / 100,
-            selectPeriod,
-            colvoYear,
-            selectPeriodVal,
-            sumAddVal,
-            result,
-            percent,
-            replenishment)
-        createChart(data, ['#84a3a6', '#bdc7ed', '#bcedc1'])
-        const valetSelectVal = $("#valetSelect").val()
-        $("#result1").text(result[result.length - 1].totalsum.toLocaleString() + " " + valetSelectVal)
-        $("#replenishment").text(result[result.length - 1].replenishment.toLocaleString() + " " + valetSelectVal)
-        $("#percent").text(result[result.length - 1].percent.toLocaleString() + " " + valetSelectVal)
-
-    } else {
-        $("#result1").text(0)
-        $("#replenishment").text(0)
-        $("#percent").text(0)
+        $("#result").text("")
+        $("#result1").text("")
+        $("#replenishment").text("")
+        $("#percent").text("")
     }
 })
 
@@ -141,11 +67,11 @@ function createData(sumCalcVal,
     selectPeriodVal,
     sumAddVal,
     result) {
-    let labels = []
-    let values1 = []
-    let values2 = []
-    let values3 = []
-    let i2
+    let labels = [],
+        values1 = [],
+        values2 = [],
+        values3 = [],
+        i2
 
     for (let i = 1; i <= colvoYear; i++) {
         i2 = (result.length / colvoYear) * i
@@ -173,12 +99,39 @@ function createData(sumCalcVal,
     }
 }
 
+function createDataTable(result, colvoYear) {
+    let labels = [],
+        values1 = [],
+        values2 = [],
+        values3 = [],
+        values4 = [],
+        values5 = [],
+        i2
+
+    for (let i = 1; i <= colvoYear; i++) {
+        i2 = (result.length / colvoYear) * i
+        labels.push(`${i} год`)
+        values1.push(result[i2 - 1].totalsum)
+        values2.push(result[i2 - 1].replenishment)
+        values3.push(result[i2 - 1].percent)
+        values4.push(result[i2 - 1].percDif)
+        values5.push(result[i2 - 1].replDif)
+    }
+    return {
+        labels: labels,
+        values1: values1,
+        values2: values2,
+        values3: values3,
+        values4: values4,
+        values5: values5
+    }
+                
+}
 
 function createChart(data, colors) {
     const chart = new frappe.Chart("#graph", {
         title: "График",
         data: data,
-        valuesOverPoints: true,
         type: 'bar',
         barOptions: {
             stacked: 1,
@@ -205,17 +158,40 @@ const chart = createChart(createData(10000,
         1000
     )), ['#8a88a6', '#c4c2ed', '#edd1bc'])
 
-setInterval(() => {
-    let data1 = document.querySelector(".dataset-units.dataset-bars.dataset-0").querySelectorAll(".data-point-value")
-    let data2 = document.querySelector(".dataset-units.dataset-bars.dataset-1").querySelectorAll(".data-point-value")
-    for (const data of data1) {
-        data.remove()
-    }
-    for (const data of data2) {
-        data.remove()
-    }
-}, 50)
 
+function createTable (edata, sumCalcVal, valetSelectVal) {
+    data = [
+        ["Год", "Начальная сумма", "Пополнение за год", "Суммарные пополнения", "Начисленные проценты за год", "Суммарный процент" , "Итоговая сумма"]
+    ]
+    for (let i = 0; i < edata.labels.length; i++) {
+        data.push([
+            edata.labels[i],
+            (edata.values1[i-1] || sumCalcVal) + ` ${valetSelectVal}`,
+            edata.values5[i] + ` ${valetSelectVal}`,
+            edata.values2[i] + ` ${valetSelectVal}`,
+            edata.values4[i] + ` ${valetSelectVal}`,
+            edata.values3[i] + ` ${valetSelectVal}`,
+            edata.values1[i] + ` ${valetSelectVal}`
+        ])
+    }
+    let container = document.querySelector("#table")
+    const table = new Handsontable(container, {
+        data,
+        height: '50vh',
+        width: '200vh',
+        colHeaders: false,
+        licenseKey: 'non-commercial-and-evaluation'
+      })
+
+    let trs = container.querySelectorAll("tr")
+    trs[0].id = "special-above"
+    trs[trs.length-1].id = "special-below"
+
+    // let tds = container.querySelectorAll("td")
+    // tds[tds.length-1].classList.add("total-cell")
+    // console.log(tds)
+    return table
+}
 
 
 $("#resetButton").on("click", e => {
@@ -229,52 +205,53 @@ $("#resetButton").on("click", e => {
     location.reload(true);
 
 })
-class GenerateTable {
-    constructor(containerElem, data) {
-        this.containerElem = containerElem
-        this.data = data
-        this.generaTable()
-    }
 
-    generaTable() {
+// class GenerateTable {
+//     constructor(containerElem, data) {
+//         this.containerElem = containerElem
+//         this.data = data
+//         this.generaTable()
+//     }
 
-        const tbl = document.createElement("table");
-        const tblBody = document.createElement("tbody");
-        const tblHead = document.createElement("thead");
-        const row = document.createElement("tr");
-        for (let i = 0; i < this.data.rows.length; i++) {
+//     generaTable() {
 
-            const cell = document.createElement("td");
-            const cellText = document.createTextNode(this.data.rows[i]);
-            cell.appendChild(cellText);
-            row.appendChild(cell);
+//         const tbl = document.createElement("table");
+//         const tblBody = document.createElement("tbody");
+//         const tblHead = document.createElement("thead");
+//         const row = document.createElement("tr");
+//         for (let i = 0; i < this.data.rows.length; i++) {
 
-            // add the row to the end of the table body
+//             const cell = document.createElement("td");
+//             const cellText = document.createTextNode(this.data.rows[i]);
+//             cell.appendChild(cellText);
+//             row.appendChild(cell);
 
-        }
-        tblHead.appendChild(row);
-        // creating all cells
+//             // add the row to the end of the table body
 
-        for (let i = 0; i < this.data.column.length; i++) {
-            const row = document.createElement("tr");
+//         }
+//         tblHead.appendChild(row);
+//         // creating all cells
 
-            for (let j = 0; j < this.data.column[i].length; j++) {
-                const cell = document.createElement("td");
-                const cellText = document.createTextNode(this.data.column[i][j]);
-                cell.appendChild(cellText);
-                row.appendChild(cell);
-            }
+//         for (let i = 0; i < this.data.column.length; i++) {
+//             const row = document.createElement("tr");
 
-            // add the row to the end of the table body
-            tblBody.appendChild(row);
-        }
+//             for (let j = 0; j < this.data.column[i].length; j++) {
+//                 const cell = document.createElement("td");
+//                 const cellText = document.createTextNode(this.data.column[i][j]);
+//                 cell.appendChild(cellText);
+//                 row.appendChild(cell);
+//             }
 
-        tbl.appendChild(tblHead)
-        // put the <tbody> in the <table>
-        tbl.appendChild(tblBody);
-        // appends <table> into <body>
-        this.containerElem.appendChild(tbl);
+//             // add the row to the end of the table body
+//             tblBody.appendChild(row);
+//         }
 
-    }
+//         tbl.appendChild(tblHead)
+//         // put the <tbody> in the <table>
+//         tbl.appendChild(tblBody);
+//         // appends <table> into <body>
+//         this.containerElem.appendChild(tbl);
 
-}
+//     }
+
+// }
