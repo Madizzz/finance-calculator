@@ -59,7 +59,9 @@ $("#buttonCalc").on("click", e => {
             sumAddVal,
             result)
         createChart(data, ['#84a3a6', '#bdc7ed', '#bcedc1'])
-        $("#result").text(result[result.length - 1].totalsum)
+        const valetSelectVal = $("#valetSelect").val()
+        $("#result").text(result[result.length - 1].totalsum.toLocaleString() + " " + valetSelectVal)
+
     } else {
         $("#result").text(0)
     }
