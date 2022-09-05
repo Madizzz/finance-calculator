@@ -24,9 +24,13 @@ legend{
     margin-bottom: 8px;
 }
 
-.content{
-    
+@media only screen and (max-width: 1024px) {
+    .content{
+        justify-content: center;
+    }
 }
+
+
 
 .calculator{
     background: #E7F2F8;
@@ -117,6 +121,12 @@ footer{
 /* стили для графика - не трогать */
 .graph {
     width: 900px;
+}
+
+@media only screen and (max-width: 1024px){
+    .graph {
+        width: 600px;
+    }
 }
 
 .y.axis > g > text {
