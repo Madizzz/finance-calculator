@@ -110,6 +110,10 @@ footer{
     right: -7px;
 }
 
+.footer-content .links a:last-of-type:after{
+    content: "";
+}
+
 /* стили для графика - не трогать */
 .graph {
     width: 900px;
