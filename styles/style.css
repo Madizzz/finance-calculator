@@ -69,8 +69,45 @@ legend{
 footer{
     height: 100px;
     width: 100%;
-    text-align: center;
-    border-top: 1px solid #ccc;    
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #ccc;
+    font-size: 14px;    
+}
+
+.footer-content{
+    width: 80%;
+    padding: 24px;
+}
+
+.copyright{
+
+}
+
+.copyright .copyright-text{
+    display: flex;
+    align-items: center;
+    color: #424245;
+}
+
+.copyright .copyright-text img{
+    margin-right: 3px;
+}
+
+.footer-content .links{
+    margin: 8px 0;
+}
+
+.footer-content .links a{
+    margin-right: 8px;
+    position: relative;
+    color: #424245;
+}
+
+.footer-content .links a:after{
+    content: "|";
+    position: absolute;
+    right: -7px;
 }
 
 /* стили для графика - не трогать */
