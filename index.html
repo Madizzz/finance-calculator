@@ -7,191 +7,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/css/uikit.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="styles/style.css">
-    <link rel="icon" type="image/x-icon" href="images/favicon1.ico">
 </head>
 </head>
 
 <body>
-    <header>
-        <h1>Калькулятор сложных процентов</h1>
-    </header>
 
-    <div class="content uk-flex uk-flex-wrap">
-        <div class="calculator content-block">
-            <legend class="uk-legend">Шаг 1 - Первоначальная сумма <span uk-icon="question"
-                    uk-tooltip="Сумма денег, которую вы хотели бы инвестировать"></span></legend>
-            <div>
-                <label class="uk-form-label"></label>
-                <div class="uk-form-controls uk-flex">
-                    <div class="uk-margin">
-                        <input id="sumCalc" placeholder="0" class="uk-input uk-form-width-large sum-input" type="number"
-                            placeholder="" min="0" step="1000">
-                    </div>
-                    <select class="uk-select uk-form-width-xsmall" id="valetSelect">
-                        <option value="$">$</option>
-                        <option value="€">€</option>
-                        <option value="£">£</option>
-                        <option value="₩">₩</option>
-                        <option value="¥">¥</option>
-                        <option value="Ұ">Ұ</option>
-                        <option value="元">元</option>
-                        <option value="د.إ">د.إ</option>
-                        <option value="₹">₹</option>
-                        <option value="R$">R$</option>
-                        <option value="฿">฿</option>
-                        <option value="₽">₽</option>
-                    </select>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mt-4 mb-4">Калькулятор сложных процентов</h1>
             </div>
-
-            <legend class="uk-legend">Шаг 2 - Пополнения <span uk-icon="question"
-                    uk-tooltip="Сумма, которую вы планируете добавлять к основной сумме, или отрицательное число, если вы планируете снимать деньги."></span>
-            </legend>
-
-            <div class="uk-flex input-group-bg">
-                <div>
-                    <div class="uk-form-label">Сумма</div>
-                    <div class="uk-form-controls">
-                        <div class="uk-margin">
-                            <input id="sumAdd" placeholder="0" class="uk-input uk-form-width-medium" type="number"
-                                placeholder="" min="0" step="100">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-margin-left">
-                    <div class="uk-form-label">Периодичность</div>
-                    <div class="uk-form-controls uk-form-width-medium">
-                        <div class="uk-margin">
-                            <select id="selectPeriod" class="uk-select">
-                                <option value="12">каждый год</option>
-                                <option value="6">каждое полугодие</option>
-                                <option value="3">каждый квартал</option>
-                                <option value="1">каждый месяц</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <legend class="uk-legend">Шаг 3 - Начисления процентов <span uk-icon="question"
-                    uk-tooltip="Ваша предполагаемая процентная ставка и период её начисления"></span></legend>
-
-            <div class="uk-flex input-group-bg">
-                <div>
-                    <div class="uk-form-label">Процент</div>
-                    <div class="uk-form-controls">
-                        <div class="uk-margin">
-                            <input id="procent" placeholder="0" class="uk-input uk-form-width-medum" type="number"
-                                placeholder="" min="0" max="100" step="0.25">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="uk-margin-left">
-                    <div class="uk-form-label">Периодичность</div>
-                    <div class="uk-form-controls uk-form-width-medium">
-                        <div class="uk-margin">
-                            <select id="selectPeriod1" class="uk-select">
-                                <option value="12">каждый год</option>
-                                <option value="6">каждое полугодие</option>
-                                <option value="3">каждый квартал</option>
-                                <option value="1">каждый месяц</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <legend class="uk-legend">Шаг 4 - Количество лет <span uk-icon="question"
-                    uk-tooltip="Время в годах, в течение которого вы хотели бы откладывать средства"></span></legend>
-
-            <div>
-                <div class="uk-form-controls">
-                    <div class="uk-margin">
-                        <input placeholder="0" min="0" class="uk-input years-input" id="colvoYear" type="number"
-                            placeholder="">
-                    </div>
-                </div>
-            </div>
-            <div class="uk-flex uk-flex-between">
-                <button class="uk-button uk-button-default white-button" id="resetButton">Сбросить</button>
-                <button class="uk-button uk-button-primary main-button" id="buttonCalc">Считать</button>
-            </div>
-
-
-
-
-            <div class="result-block">
-                Итог: <span id="result"></span>
-            </div>
-
-
-
         </div>
 
-        <div class="graph content-block">
-            <div class="text-center uk-flex uk-margin-medium-bottom">
-                <div class="graph-summary">
-                    <p class="fin-sav-bal font-normal">Итоговый баланс</p>
-                    <span id="result1"></span>
+        <!-- Верхний блок -->
+        <div class="row mb-4">
+            <div class="col col-md-12 col-sm-12 col-lg-4 col-12">
+                <div class="calculator content-block">
+                    <h4 class="mt-3 mb-3">Шаг 1 - Первоначальная сумма <i id="question" class="fa-regular fa-circle-question"></i></h4>
+
+                    <div class="row">
+                        <div class="col-12 d-flex">
+                            <input style="width: 80%; border-top-right-radius: 0; border-bottom-right-radius: 0;" id="sumCalc" type="number" placeholder="0" class="form-control" placeholder=""
+                                min="0" step="1000">
+
+                            <select style="width: 20%; border-top-left-radius: 0; border-bottom-left-radius: 0;" class="form-select" id="valetSelect">
+                                <option value="$">$</option>
+                                <option value="€">€</option>
+                                <option value="£">£</option>
+                                <option value="₩">₩</option>
+                                <option value="¥">¥</option>
+                                <option value="Ұ">Ұ</option>
+                                <option value="元">元</option>
+                                <option value="د.إ">د.إ</option>
+                                <option value="₹">₹</option>
+                                <option value="R$">R$</option>
+                                <option value="฿">฿</option>
+                                <option value="₽">₽</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-3 mb-3">Шаг 2 - Пополнения <i id="question2" class="fa-regular fa-circle-question"></i></h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="" class="form-label">Сумма</label>
+                            <input id="sumAdd" type="number" placeholder="0" class="form-control" placeholder=""
+                                min="0" step="100">
+                        </div>
+                        <div class="col-6">
+                            <label for="" class="form-label">Периодичность</label>
+                            <select class="form-select" id="selectPeriod">
+                                    <option value="12">каждый год</option>
+                                    <option value="6">каждое полугодие</option>
+                                    <option value="3">каждый квартал</option>
+                                    <option value="1">каждый месяц</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-3 mb-3">Шаг 3 - Начисления процентов <i id="question3" class="fa-regular fa-circle-question"></i></h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="" class="form-label">Процент</label>
+                            <input id="procent" type="number" placeholder="0" class="form-control" placeholder=""
+                                min="0" step="0.25" max="100">
+                        </div>
+                        <div class="col-6">
+                            <label for="" class="form-label">Периодичность</label>
+                            <select class="form-select" id="selectPeriod1">
+                                    <option value="12">каждый год</option>
+                                    <option value="6">каждое полугодие</option>
+                                    <option value="3">каждый квартал</option>
+                                    <option value="1">каждый месяц</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <h4 class="mt-3 mb-3">Шаг 4 - Количество лет <i id="question4" class="fa-regular fa-circle-question"></i></h4>
+                    <div class="row">
+                        <div class="col-12">
+                            <input id="colvoYear" type="number" placeholder="0" class="form-control" placeholder="">
+                        </div>
+                    </div>
+
+                    
+                    <div class="row mt-3 mb-3">
+                        <div class="col-12 d-flex justify-content-between">
+                            <button type="button" class="btn btn-outline-secondary" id="resetButton">Сбросить</button>
+                        <button type="button" class="btn btn-outline-primary" id="buttonCalc">Считать</button>
+                        </div>
+                        
+                        <!-- <button class="" id="resetButton">Сбросить</button>
+                        <button class="" id="buttonCalc">Считать</button> -->
+                    </div>
+
+
+
+
+                    <div class="result-block">
+                        Итог: <span id="result"></span>
+                    </div>
+
                 </div>
-
-                <div class="hpanel graph-summary">
-                    <p class="text-big-32 font-bold">Всего пополнений</p>
-                    <span id="replenishment"></span>
-                </div>
-
-                <div class="hpanel graph-summary">
-                    <p class="text-big-24-xs font-bold">Всего процентов</p>
-                    <span id="percent"></span>
-                </div>
-
-            </div>
-            <div id="graph">
-
             </div>
 
             
+            <div class="col col-md-12 col-lg-8 col-sm-12 col-12">
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                              <p class="card-text">Итоговый баланс</p>
+                              <span id="result1"></span>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                              <p class="card-text">Всего пополнений</p>
+                              <span id="replenishment"></span>
+                            </div>
+                          </div>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                              <p class="card-text">Всего процентов</p>
+                              <span id="percent"></span>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+
+                <div id="graph">
+
+                </div>
+            </div>
+        </div>
+        <!-- /Верхний блок -->
+
+      
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="mt-4 mb-4" id="table"></div>
+            </div>
         </div>
 
+        <footer>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="copyright">
+                        <span class="copyright-text"><img src="images/copyright.svg" alt="copyright" width="15"
+                                height="15">Noname Ltd., 2022 г. Все права защищены.</span>
+                    </div>
+                    <div class="links mt-2">
+                        <a class="" href="#">Политика конфиденциальности</a>
+                        <a class="" href="#">Использование Cookies</a>
+                        <a class="" href="#">Условия использования</a>
+                        <a class="" href="#">Продажа и возврат</a>
+                        <a class="" href="#">Юридическая информация</a>
+                        <a class="" href="#">Карта сайта</a>
+                    </div>
+                </div>
+               
+            </div>
+        </footer>
         
+       
     </div>
 
-    <div class="table-wrap uk-margin-medium-top uk-flex uk-flex-center">
-        <div id="table" class="uk-table"></div>
-    </div>
+
+
     
-    <footer>
-        <div class="footer-content">
-            <div class="copyright">
-                <span class="copyright-text"><img src="images/copyright.svg" alt="copyright" width="15"
-                        height="15">Noname Ltd., 2022 г. Все права защищены.</span>
-            </div>
-            <div class="links">
-                <a class="uk-link-text uk-margin-medium" href="#">Политика конфиденциальности</a>
-                <a class="uk-link-text uk-margin-medium" href="#">Использование Cookies</a>
-                <a class="uk-link-text uk-margin-medium" href="#">Условия использования</a>
-                <a class="uk-link-text uk-margin-medium" href="#">Продажа и возврат</a>
-                <a class="uk-link-text uk-margin-medium" href="#">Юридическая информация</a>
-                <a class="uk-link-text uk-margin-medium" href="#">Карта сайта</a>
-            </div>
-        </div>
-    </footer>
 
 
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/frappe-charts@1.6.1/dist/frappe-charts.min.umd.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/handsontable/dist/handsontable.full.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/js/uikit.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous" defer></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js" defer></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.6/dist/js/uikit-icons.min.js" defer></script>
     <script src="scripts/jquery-3.6.1.min.js" defer></script>
     <script src="scripts/app.js" defer></script>

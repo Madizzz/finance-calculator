@@ -186,9 +186,9 @@ function createTable (edata, sumCalcVal, valetSelectVal) {
     const table = new Handsontable(container, {
         data,
         height: 'auto',
-        width: '95vw',
-        columns: [{className: "row"}, {className: "row"}, {className: "row"}, {className: "row"}, {className: "row"}, {className: "row"}, {className: "row"}],
+        columns: [{className: "first_row"}, {className: "first_row"}, {className: "first_row"}, {className: "first_row"}, {className: "first_row"}, {className: "first_row"}, {className: "first_row"}],
         colHeaders: false,
+        stretchH: 'all',
         licenseKey: 'non-commercial-and-evaluation'
       })
 
@@ -215,6 +215,25 @@ $("#resetButton").on("click", e => {
 
 })
 
+tippy('#question', {
+    content: "Сумма денег, которую вы хотели бы инвестировать",
+    placement: 'top'
+});
+
+tippy('#question2', {
+    content: "Сумма, которую вы планируете добавлять к основной сумме, или отрицательное число, если вы планируете снимать деньги.",
+    placement: 'top'
+});
+
+tippy('#question3', {
+    content: "Ваша предполагаемая процентная ставка и период её начисления",
+    placement: 'top'
+});
+
+tippy('#question4', {
+    content: "Время в годах, в течение которого вы хотели бы откладывать средства",
+    placement: 'top'
+});
 // class GenerateTable {
 //     constructor(containerElem, data) {
 //         this.containerElem = containerElem
