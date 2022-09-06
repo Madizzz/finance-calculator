@@ -12,7 +12,7 @@ body{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 200vh;
+    height: 100vh;
 }
 
 header{
@@ -24,9 +24,19 @@ legend{
     margin-bottom: 8px;
 }
 
-.content{
-    
+@media only screen and (max-width: 1024px) {
+    .content{
+        justify-content: center;
+    }
 }
+
+@media only screen and (max-width: 1385px) {
+    .content{
+        justify-content: center;
+    }
+}
+
+
 
 .calculator{
     background: #E7F2F8;
@@ -65,6 +75,20 @@ legend{
     padding-top: 12px;
     border-top: 1px solid #bce5ed; 
 }
+
+/* table */
+
+.table-wrap{
+
+}
+
+.wtHolder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* table */
 
 footer{
     height: 100px;
@@ -119,13 +143,28 @@ footer{
     width: 900px;
 }
 
+@media only screen and (max-width: 1024px){
+    .graph {
+        width: 600px;
+    }
+
+}
+
+@media only screen and (max-width: 1385px){
+    .graph {
+        width: 700px;
+    }
+
+}
+
 .graph-summary{
     background: #bce5ed;
     display: flex;
     flex-direction: column;
     padding: 16px;
     border-radius: 16px;
-    font-weight: 700;    
+    font-weight: 700;
+    margin: 16px;    
 }
 
 .y.axis > g > text {

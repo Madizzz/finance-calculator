@@ -20,7 +20,7 @@
         <h1>Калькулятор сложных процентов</h1>
     </header>
 
-    <div class="content uk-flex">
+    <div class="content uk-flex uk-flex-wrap">
         <div class="calculator content-block">
             <legend class="uk-legend">Шаг 1 - Первоначальная сумма <span uk-icon="question"
                     uk-tooltip="Сумма денег, которую вы хотели бы инвестировать"></span></legend>
@@ -139,7 +139,7 @@
         </div>
 
         <div class="graph content-block">
-            <div class="text-center uk-flex uk-flex-between uk-margin-medium-bottom">
+            <div class="text-center uk-flex uk-margin-medium-bottom">
                 <div class="graph-summary">
                     <p class="fin-sav-bal font-normal">Итоговый баланс</p>
                     <span id="result1"></span>
@@ -159,11 +159,17 @@
             <div id="graph">
 
             </div>
+
+            
         </div>
 
-
+        
     </div>
-    <div id="table" class="uk-table"></div>
+
+    <div class="table-wrap uk-margin-medium-top uk-flex uk-flex-center">
+        <div id="table" class="uk-table"></div>
+    </div>
+    
     <footer>
         <div class="footer-content">
             <div class="copyright">
