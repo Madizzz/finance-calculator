@@ -160,6 +160,7 @@ const chart = createChart(createData(10000,
 
 
 function createTable (edata, sumCalcVal, valetSelectVal) {
+    let container = document.querySelector("#table")
     data = [
         ["Год", "Начальная сумма", "Пополнение за год", "Суммарные пополнения", "Начисленные проценты за год", "Суммарный процент" , "Итоговая сумма"]
     ]
@@ -174,11 +175,19 @@ function createTable (edata, sumCalcVal, valetSelectVal) {
             edata.values1[i].toLocaleString() + ` ${valetSelectVal}`
         ])
     }
-    let container = document.querySelector("#table")
+    if (container.classList.contains("handsontable")) {
+        let parent = container.parentElement,
+            div = document.createElement("div")
+        parent.replaceChild(div, container)
+        div.id = "table"
+        div.classList.add("uk-table")
+        container = div
+    }
     const table = new Handsontable(container, {
         data,
         height: 'auto',
-        width: '100vh',
+        width: '95vw',
+        columns: [{className: "row"}, {className: "row"}, {className: "row"}, {className: "row"}, {className: "row"}, {className: "row"}, {className: "row"}],
         colHeaders: false,
         licenseKey: 'non-commercial-and-evaluation'
       })

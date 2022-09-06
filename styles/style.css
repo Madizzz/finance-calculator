@@ -186,3 +186,7 @@ footer{
 .total-cell{
     color: #bce5ed;
 }
+
+.row{
+    text-align: right;
+}
