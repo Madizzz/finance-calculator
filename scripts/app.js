@@ -47,10 +47,10 @@ $("#buttonCalc").on("click", e => {
         console.log(result)
         const valetSelectVal = $("#valetSelect").val()
         createTable(createDataTable(result, colvoYear), sumCalcVal, valetSelectVal)
-        $("#result").text(result[result.length - 1].totalsum + ` ${valetSelectVal}`)
-        $("#result1").text(result[result.length - 1].totalsum + ` ${valetSelectVal}`)
-        $("#replenishment").text(result[result.length - 1].replenishment + ` ${valetSelectVal}`)
-        $("#percent").text(result[result.length - 1].percent + ` ${valetSelectVal}`)
+        $("#result").text(result[result.length - 1].totalsum.toLocaleString() + ` ${valetSelectVal}`)
+        $("#result1").text(result[result.length - 1].totalsum.toLocaleString() + ` ${valetSelectVal}`)
+        $("#replenishment").text(result[result.length - 1].replenishment.toLocaleString() + ` ${valetSelectVal}`)
+        $("#percent").text(result[result.length - 1].percent.toLocaleString() + ` ${valetSelectVal}`)
 
     } else {
         $("#result").text(0)
@@ -75,7 +75,7 @@ function createData(sumCalcVal,
 
     for (let i = 1; i <= colvoYear; i++) {
         i2 = (result.length / colvoYear) * i
-        labels.push(`${i} год`)
+        labels.push(`${i}`)
         values1.push(sumCalcVal)
         values2.push(result[i2 - 1].replenishment)
         values3.push(result[i2 - 1].percent)
@@ -110,7 +110,7 @@ function createDataTable(result, colvoYear) {
 
     for (let i = 1; i <= colvoYear; i++) {
         i2 = (result.length / colvoYear) * i
-        labels.push(`${i} год`)
+        labels.push(`${i}`)
         values1.push(result[i2 - 1].totalsum)
         values2.push(result[i2 - 1].replenishment)
         values3.push(result[i2 - 1].percent)
@@ -166,19 +166,19 @@ function createTable (edata, sumCalcVal, valetSelectVal) {
     for (let i = 0; i < edata.labels.length; i++) {
         data.push([
             edata.labels[i],
-            (edata.values1[i-1] || sumCalcVal) + ` ${valetSelectVal}`,
-            edata.values5[i] + ` ${valetSelectVal}`,
-            edata.values2[i] + ` ${valetSelectVal}`,
-            edata.values4[i] + ` ${valetSelectVal}`,
-            edata.values3[i] + ` ${valetSelectVal}`,
-            edata.values1[i] + ` ${valetSelectVal}`
+            (edata.values1[i-1] || sumCalcVal).toLocaleString() + ` ${valetSelectVal}`,
+            edata.values5[i].toLocaleString() + ` ${valetSelectVal}`,
+            edata.values2[i].toLocaleString() + ` ${valetSelectVal}`,
+            edata.values4[i].toLocaleString() + ` ${valetSelectVal}`,
+            edata.values3[i].toLocaleString() + ` ${valetSelectVal}`,
+            edata.values1[i].toLocaleString() + ` ${valetSelectVal}`
         ])
     }
     let container = document.querySelector("#table")
     const table = new Handsontable(container, {
         data,
         height: '50vh',
-        width: '200vh',
+        width: '100vh',
         colHeaders: false,
         licenseKey: 'non-commercial-and-evaluation'
       })
