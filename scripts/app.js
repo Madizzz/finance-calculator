@@ -177,8 +177,8 @@ function createTable (edata, sumCalcVal, valetSelectVal) {
     let container = document.querySelector("#table")
     const table = new Handsontable(container, {
         data,
-        height: '50vh',
-        width: '200vh',
+        height: 'auto',
+        width: '100vh',
         colHeaders: false,
         licenseKey: 'non-commercial-and-evaluation'
       })
